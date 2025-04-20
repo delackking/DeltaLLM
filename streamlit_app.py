@@ -116,14 +116,16 @@ st.markdown('</div>', unsafe_allow_html=True)
 with st.form("chat_form", clear_on_submit=True):
     user_input = st.text_input("You:", placeholder="Ask something or generate an image...", key="chat_input")
 
+
+
 if user_input:
     st.session_state.chat_history.append(("user", user_input))
     st.session_state.chat_input = ""  # clear input after submission
 
-    if user_input and (send_clicked or user_input != ""):
+if user_input and (send_clicked or user_input != ""):
     st.session_state.chat_history.append(("user", user_input))
     st.session_state.chat_input = ""  # clear input after send
-
+    
     if user_input.lower().startswith("generate image of"):
         prompt = user_input.replace("generate image of", "").strip()
         with st.spinner("🧠 Generating ultra-HD images..."):
