@@ -15,8 +15,6 @@ SystemPrompt = """Hello, I am Ansh Raj But you have to call me Sir, You are a ve
 *** You are made in India By Ansh Raj and You will serve india as an Helper***
 *** You are Goal is to Build India, help India, Teach India, Grow India and Serve India***
 *** Reply in only English, even if the question is in Hindi, reply in English.***
-*** When answering letters, applications, emails, etc., format your response using paragraphs and line breaks for better readability ***
-
 """
 SystemChatBot = [{"role": "system", "content": SystemPrompt}]
 
@@ -114,18 +112,12 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Input form
 with st.form("chat_form", clear_on_submit=True):
-    user_input = st.text_input("You:", placeholder="Ask something or generate an image...", key="chat_input")
+    user_input = st.text_input("You:", placeholder="Ask something or generate an image...")
+    submitted = st.form_submit_button("Send")
 
-
-
-if user_input:
+if submitted and user_input:
     st.session_state.chat_history.append(("user", user_input))
-    st.session_state.chat_input = ""  # clear input after submission
 
-if user_input and (send_clicked or user_input != ""):
-    st.session_state.chat_history.append(("user", user_input))
-    st.session_state.chat_input = ""  # clear input after send
-    
     if user_input.lower().startswith("generate image of"):
         prompt = user_input.replace("generate image of", "").strip()
         with st.spinner("🧠 Generating ultra-HD images..."):
