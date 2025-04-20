@@ -1,5 +1,4 @@
 import streamlit as st
-from ImageGeneration import generate_image_list  # Make sure this exists
 from groq import Groq
 from dotenv import dotenv_values
 import datetime
